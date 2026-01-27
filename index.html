@@ -1,1 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seyvik Magon - Content Creator & Cinematic Storyteller</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 8%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.05" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 1;
+            animation: fadeInLeft 1s ease-out;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            color: #FFE66D;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: #FFE66D;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #FFE66D;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hero-image img {
+            max-width: 450px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            object-fit: cover;
+            border: 4px solid rgba(255, 230, 109, 0.3);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: #FFE66D;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 230, 109, 0.2);
+        }
+
+        /* About Section */
+        .about {
+            min-height: 100vh;
+            background-color: #000;
+            color: #fff;
+            padding: 5rem 8%;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-images {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .about-images .featured-image {
+            grid-column: 1 / -1;
+            height: 350px;
+        }
+
+        .about-images img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 230, 109, 0.1);
+        }
+
+        .about-images .featured-image img {
+            height: 350px;
+        }
+
+        .about-images img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 230, 109, 0.3);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .about p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: #FFE66D;
+            font-weight: 500;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid #FFE66D;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background: #FFE66D;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scrollDot 2s infinite;
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        @keyframes scrollDot {
+            0% {
+                top: 10px;
+                opacity: 1;
+            }
+            100% {
+                top: 35px;
+                opacity: 0;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                padding: 2rem 5%;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                margin-top: 2rem;
+            }
+
+            .hero-image img {
+                max-width: 350px;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .about {
+                flex-direction: column;
+                padding: 3rem 5%;
+            }
+
+            .about-images {
+                order: 2;
+            }
+
+            .about-content {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .about-images {
+                grid-template-columns: 1fr;
+            }
+
+            .about-images .featured-image {
+                grid-column: 1;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .social-links a {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Seyvik Magon</h1>
+            <p class="hero-subtitle">Content Creator/Cinematic Storyteller</p>
+            <p class="hero-description">Finance & Analytics @ Babson College</p>
+            <p class="hero-tagline">The Pursuit of Happiness</p>
+            
+            <div class="social-links">
+                <a href="mailto:contact@seyvikmagon.com">
+                    <span>📧</span> Email
+                </a>
+                <a href="https://www.instagram.com/seyvikmagon/" target="_blank">
+                    <span>📱</span> Instagram
+                </a>
+                <a href="https://www.tiktok.com/@seyvikmagon07" target="_blank">
+                    <span>🎵</span> TikTok
+                </a>
+                <a href="https://www.linkedin.com/in/seyvikmagon/" target="_blank">
+                    <span>💼</span> LinkedIn
+                </a>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <img src="images/wallstreet.jpg" alt="Seyvik Magon at Wall Street">
+        </div>
+        
+        <div class="scroll-indicator" onclick="document.querySelector('.about').scrollIntoView({behavior: 'smooth'})"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="about-images">
+            <div class="featured-image">
+                <img src="images/atletico.jpeg" alt="At Atlético Madrid match">
+            </div>
+            <img src="images/campo.jpeg" alt="Fitness journey">
+            <img src="images/selfie.jpeg" alt="Casual moment">
+        </div>
+        
+        <div class="about-content">
+            <h2>Who Am I?</h2>
+            <p>
+                Hey! My name is Seyvik, I'm a <span class="highlight">20 year old creator</span> 
+                documenting the inner experience of <span class="highlight">chasing difficult goals</span> 
+                - career, fitness, self-discipline- through <span class="highlight">cinematic storytelling 
+                & short form content</span>
+            </p>
+            <p>
+                My work has generated over <span class="highlight">7 million organic views</span>, 
+                and since launching my Instagram, I've gained <span class="highlight">1k+ followers 
+                in under two weeks</span>. More importantly, the content consistently leads to direct 
+                messages and <span class="highlight">thoughtful conversations from likeminded people</span>
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-images img').forEach(img => {
+            img.style.opacity = '0';
+            img.style.transform = 'translateY(30px)';
+            img.style.transition = 'all 0.6s ease-out';
+            observer.observe(img);
+        });
+    </script>
+</body>
+</html>
 Hello World!
